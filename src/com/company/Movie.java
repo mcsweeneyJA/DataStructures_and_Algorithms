@@ -8,6 +8,8 @@ public class Movie {
     String genre;
     String classification;
     int date;
+    int copies;
+    int rentalCount;
 
     public Movie(String movietitle, String movieStarring, String movieDirector, int movieDuration, String movieGenre, String movieClassification, int movieDate){
         title = movietitle;
@@ -17,6 +19,8 @@ public class Movie {
         genre = movieGenre;
         classification = movieClassification;
         date = movieDate;
+        copies = 5;
+        rentalCount = 0;
     }
 
 

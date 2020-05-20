@@ -1,61 +1,36 @@
 package com.company;
 
-public class MemberCollection  {
-    Member[] a;
-    int capacity;
-    int size() {
+public class MemberCollection {
+    Member[] members;
+    int capacity = 10;
+    int counter;
 
-        return capacity;
-    }
-    
-    Member get (int i) {
-        if (i < 0 || i > (capacity-1)) throw new IndexOutOfBoundsException();
-        return a[i];
-    }
-    
-    Member set (int i, Member mem){
-        if (i < 0 || i > (capacity - 1)) throw new IndexOutOfBoundsException();
-        Member placeHold = a[i];
-        a[i] = mem;
-        return placeHold;
-        
-    }
-    
-    /** @noinspection SameParameterValue*/
-    void add(int i, Member mem){
-        if ( i < 0 || i > capacity) throw new IndexOutOfBoundsException();
-        if (capacity == a.length) {
-            resize();
-        }
-        for (int j = capacity; j > i; j --){
-            a[j] = a[j-1];
-        }
-        a[i] = mem;
-        capacity++;
+    public MemberCollection(){
+        members = new Member[capacity];
+        counter = 0;
+
     }
 
-    Member remove(int i){
-        if ( i < 0 || i > (capacity -1 )) throw new IndexOutOfBoundsException();
-        Member query = a[i];
-        for (int j = i; j < (capacity -1); j++){
-            a[j] = a[j+1];
+    public void addMember(Member mem){
+
+        if (counter < 10){
+
+            members[counter] = mem;
+            counter++;
+
+
         }
-        capacity --;
-        if (a.length >= 2*capacity){
-            resize();
-        }
-        return query;
     }
 
-     void resize() {
-        Member[] bigger = new Member[(Math.max(capacity*2, 1))];
-        for (int i =0; i < capacity; i++){
-            bigger[i] = a[i];
-        }
-        a = bigger;
+    public Member getMemberByPin(int pin){
+        for (int i=0; i < members.length; i++){
+            if(pin == members[i].pword ){
+                return members[i];
+            }
+
+        }return null;
+
+
     }
 
-    public MemberCollection () {
-       a = new Member[10];
-    }
 }
